@@ -7,28 +7,69 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function newPost()
+    public function create()
     {
-        return view('newPost');
+        return view('create');
     }
 
-    public function listPost()
+    public function search()
     {
-        $users = Post::all();
-
-        return view('listPost', ['users' => $users]);
+        return view('search');
     }
 
-    public function submit(Request $request)
+    public function index()
     {
-        $name = $request->input('name');
-        $email = $request->input('email');
+        $posts = Post::all();
 
-        $post = new Post();
-        $post->title = $name;
-        $post->body = $email;
+        return view('index', ['posts' => $posts]);
+    }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+
+        return view('edit', ['post' => $post]);
+    }
+
+    public function save(Request $request)
+    {
+        $title = $request->input('title');
+        $body = $request->input('body');
+        $id = $request->input('id');
+
+        $post = Post::find($id);
+        $post->title = $title;
+        $post->body = $body;
         $post->save();
 
-        return back()->with('success', 'Form submitted successfully!');
+        return redirect('/posts');
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('/posts');
+    }
+
+    public function store(Request $request)
+    {
+        $title = $request->input('title');
+        $body = $request->input('body');
+
+        $post = new Post();
+        $post->title = $title;
+        $post->body = $body;
+        $post->save();
+
+        return redirect('/posts');
+    }
+
+    public function ajax(Request $request)
+    {
+        $post = Post::find(1);
+
+        return response()->json($post);
     }
 }

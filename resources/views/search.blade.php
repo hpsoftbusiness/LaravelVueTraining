@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="app">
-    <hello-vue />
+    <post-search />
 </div>
 </body>
 </html>

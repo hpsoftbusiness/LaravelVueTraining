@@ -2,10 +2,10 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
-import HelloVue from './components/HelloVue.vue';
+import PostSearch from './components/PostSearch.vue';
 
 createApp({
     components: {
-        HelloVue,
+        PostSearch,
     }
 }).mount('#app');
