@@ -1,10 +1,8 @@
 <template>
     <div>
-        <h1>Search for post</h1>
         <input v-model="message" placeholder="search for post" />
         <button @click="fetchData">Search</button>
-        <p>Response from server: {{ response }}</p>
-        <p>Searched phrase : {{ message }}</p>
+        <p>{{ response }}</p>
     </div>
 </template>
 
