@@ -1,7 +1,6 @@
-<!-- ExampleForm.vue -->
 <template>
     <div class="container">
-            <div v-if="editt">
+            <div v-if="edit">
                 <h1>Edit post</h1>
                 <form @submit.prevent="save">
                     <div class="form-group">
@@ -16,7 +15,10 @@
                         <label for="email">Body:</label>
                         <input type="text" id="body" v-model="formData.body" class="form-control">
                     </div>
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <a href="/" class="btn btn-success" style="float: right;">Powrot</a>
+                    </div>
                 </form>
             </div>
             <div v-else>
@@ -30,47 +32,49 @@
                         <label for="email">Body:</label>
                         <input type="text" id="body" v-model="formData.body" class="form-control">
                     </div>
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Add</button>
+                        <a href="/" class="btn btn-success" style="float: right;">Back</a>
+                    </div>
                 </form>
             </div>
-            <a href="/" class="btn btn-success" style="float: right;">Powrot</a>
     </div>
 </template>
 <script>
 export default {
-    props: ['editt'],
+    props: ['edit'],
     data() {
         return {
             formData: {
                 id: '',
                 title: '',
                 body: '',
-                 post: this.editt
+                post: this.edit
             },
         };
     },
     mounted() {
-        this.formData.title = this.editt.title,
-        this.formData.body = this.editt.body,
-        this.formData.id = this.editt.id
+        this.formData.title = this.edit.title,
+        this.formData.body = this.edit.body,
+        this.formData.id = this.edit.id
     },
     methods: {
         add() {
             axios.post('/posts', this.formData)
                 .then(response => {
-                    console.log('Form submitted successfully:', response.data);
+                    console.log('Post added successfully:', response.data);
                 })
                 .catch(error => {
-                    console.error('Error submitting form:', error);
+                    console.error('Error adding post:', error);
                 });
         },
         save() {
             axios.post('/posts/save', this.formData)
                 .then(response => {
-                    console.log('Form submitted successfully:', response.data);
+                    console.log('Post saved successfully:', response.data);
                 })
                 .catch(error => {
-                    console.error('Error submitting form:', error);
+                    console.error('Error saving post:', error);
                 });
         }
     }

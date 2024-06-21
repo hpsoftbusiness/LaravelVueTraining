@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <h1>Latest blog posts</h1>
+        <br>
         <post-search></post-search>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
+                <th scope="col">Title</th>
+                <th scope="col">Body</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -20,6 +21,7 @@
             </tr>
             </tbody>
         </table>
+        <a href="/posts/create"><button class="btn btn-primary" >Add new post</button></a>
     </div>
 </template>
 

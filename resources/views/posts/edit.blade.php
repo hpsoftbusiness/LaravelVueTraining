@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="app">
-    <post-edit :editt="{{ json_encode($editt) }}" ></post-edit>
+    <post-edit :edit="{{json_encode($edit)}}"></post-edit>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

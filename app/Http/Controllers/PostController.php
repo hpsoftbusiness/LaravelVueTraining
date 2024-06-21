@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function create()
     {
-        return view('posts/edit', ['editt' => false]);
+        return view('posts/edit', ['edit' => false]);
     }
 
     public function index()
@@ -23,11 +23,16 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts/edit', ['editt' => $post]);
+        return view('posts/edit', ['edit' => $post]);
     }
 
     public function save(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         $title = $request->input('title');
         $body = $request->input('body');
         $id = $request->input('id');
@@ -37,7 +42,7 @@ class PostController extends Controller
         $post->body = $body;
         $post->save();
 
-        return response()->json(['message' => 'Form data saved successfully'], 201);
+        return response()->json(['message' => 'Post saved successfully'], 201);
     }
 
     public function destroy($id)
@@ -50,6 +55,11 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         $title = $request->input('title');
         $body = $request->input('body');
 
@@ -58,6 +68,6 @@ class PostController extends Controller
         $post->body = $body;
         $post->save();
 
-        return response()->json(['message' => 'Form data created successfully'], 201);
+        return response()->json(['message' => 'New post added successfully'], 201);
     }
 }
