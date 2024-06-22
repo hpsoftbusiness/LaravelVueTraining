@@ -23,7 +23,7 @@
             </div>
             <div v-else>
                 <h1>Add post</h1>
-                <form @submit.prevent="add">
+                <form @submit.prevent="save">
                     <div class="form-group">
                         <label for="name">Title:</label>
                         <input type="text" id="title" v-model="formData.title" class="form-control">
@@ -48,8 +48,7 @@ export default {
             formData: {
                 id: '',
                 title: '',
-                body: '',
-                post: this.edit
+                body: ''
             },
         };
     },
@@ -59,17 +58,8 @@ export default {
         this.formData.id = this.edit.id
     },
     methods: {
-        add() {
-            axios.post('/posts', this.formData)
-                .then(response => {
-                    console.log('Post added successfully:', response.data);
-                })
-                .catch(error => {
-                    console.error('Error adding post:', error);
-                });
-        },
         save() {
-            axios.post('/posts/save', this.formData)
+            axios.post('/post/save', this.formData)
                 .then(response => {
                     console.log('Post saved successfully:', response.data);
                 })

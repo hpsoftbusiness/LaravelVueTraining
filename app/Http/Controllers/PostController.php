@@ -7,25 +7,32 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function create()
+    public function new()
     {
-        return view('posts/edit', ['edit' => false]);
+        return view('post/edit', ['edit' => false]);
     }
 
     public function index()
     {
         $posts = Post::all();
 
-        return view('posts/index', ['posts' => $posts]);
+        return view('post/index', ['posts' => $posts]);
     }
 
     public function edit($id)
     {
         $post = Post::find($id);
 
-        return view('posts/edit', ['edit' => $post]);
+        return view('post/edit', ['edit' => $post]);
     }
 
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('post/post');
+    }
     public function save(Request $request)
     {
         $request->validate([
@@ -33,35 +40,18 @@ class PostController extends Controller
             'body' => 'required',
         ]);
 
+        $id = $request->input('id') ?? null;
         $title = $request->input('title');
         $body = $request->input('body');
-        $id = $request->input('id');
 
-        $post = Post::find($id);
-        $post->title = $title;
-        $post->body = $body;
-        $post->save();
+        if (isset($id)) {
+            $post = Post::find($id);
+            $post->title = $title;
+            $post->body = $body;
+            $post->save();
 
-        return response()->json(['message' => 'Post saved successfully'], 201);
-    }
-
-    public function destroy($id)
-    {
-        $post = Post::find($id);
-        $post->delete();
-
-        return redirect('posts/posts');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
-
-        $title = $request->input('title');
-        $body = $request->input('body');
+            return response()->json(['message' => 'Post saved successfully'], 201);
+        }
 
         $post = new Post();
         $post->title = $title;

@@ -17,11 +17,11 @@
                 <td>{{post.id}}</td>
                 <td>{{post.title}}</td>
                 <td>{{post.body}}</td>
-                <td><a :href="'/posts/edit/' + post.id" class="btn btn-primary">Edit</a></td>
+                <td><a :href="'/post/edit/' + post.id" class="btn btn-primary">Edit</a></td>
             </tr>
             </tbody>
         </table>
-        <a href="/posts/create"><button class="btn btn-primary" >Add new post</button></a>
+        <a href="/post/new"><button class="btn btn-primary" >Add new post</button></a>
     </div>
 </template>
 

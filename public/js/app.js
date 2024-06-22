@@ -14890,8 +14890,7 @@ __webpack_require__.r(__webpack_exports__);
       formData: {
         id: '',
         title: '',
-        body: '',
-        post: this.edit
+        body: ''
       }
     };
   },
@@ -14899,15 +14898,8 @@ __webpack_require__.r(__webpack_exports__);
     this.formData.title = this.edit.title, this.formData.body = this.edit.body, this.formData.id = this.edit.id;
   },
   methods: {
-    add: function add() {
-      axios.post('/posts', this.formData).then(function (response) {
-        console.log('Post added successfully:', response.data);
-      })["catch"](function (error) {
-        console.error('Error adding post:', error);
-      });
-    },
     save: function save() {
-      axios.post('/posts/save', this.formData).then(function (response) {
+      axios.post('/post/save', this.formData).then(function (response) {
         console.log('Post saved successfully:', response.data);
       })["catch"](function (error) {
         console.error('Error saving post:', error);
@@ -14977,7 +14969,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return fetch('/posts/ajax', {
+              return fetch('/post/ajax', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -15119,7 +15111,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.body]])]), _hoisted_10], 32 /* HYDRATE_EVENTS */)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.add && $options.add.apply($options, arguments);
+      return $options.save && $options.save.apply($options, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
@@ -15172,7 +15164,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, "Action")])], -1 /* HOISTED */);
 var _hoisted_6 = ["href"];
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/posts/create"
+  href: "/post/new"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-primary"
 }, "Add new post")], -1 /* HOISTED */);
@@ -15180,7 +15172,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_post_search = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("post-search");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_post_search), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.posts, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.id), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(post.body), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-      href: '/posts/edit/' + post.id,
+      href: '/post/edit/' + post.id,
       "class": "btn btn-primary"
     }, "Edit", 8 /* PROPS */, _hoisted_6)])]);
   }), 256 /* UNKEYED_FRAGMENT */))])]), _hoisted_7]);

@@ -21,7 +21,7 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const res = await fetch('/posts/ajax', {
+                const res = await fetch('/post/ajax', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

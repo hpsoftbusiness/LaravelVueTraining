@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::post('/posts/save', [PostController::class, 'save'])->name('posts.save');
-Route::delete('/posts/delete/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-Route::post('/posts/ajax', [PostApiController::class, 'ajax'])->name('posts.ajax');
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::get('/posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/', [PostController::class, 'index'])->name('post.index');
+Route::post('/post/save', [PostController::class, 'save'])->name('post.save');
+Route::get('/post/new', [PostController::class, 'new'])->name('post.new');
+Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+Route::delete('/post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
 
+/**
+ * API
+ */
+Route::post('/post/ajax', [PostApiController::class, 'ajax'])->name('post.ajax');
