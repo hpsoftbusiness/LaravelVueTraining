@@ -33,6 +33,7 @@ class PostController extends Controller
 
         return redirect('post/post');
     }
+
     public function save(Request $request)
     {
         $request->validate([
@@ -41,10 +42,11 @@ class PostController extends Controller
         ]);
 
         $id = $request->input('id') ?? null;
-        $title = $request->input('title');
-        $body = $request->input('body');
 
         if (isset($id)) {
+            $title = $request->input('title') ?? null;
+            $body = $request->input('body') ?? null;
+
             $post = Post::find($id);
             $post->title = $title;
             $post->body = $body;
@@ -53,11 +55,7 @@ class PostController extends Controller
             return response()->json(['message' => 'Post saved successfully'], 201);
         }
 
-        $post = new Post();
-        $post->title = $title;
-        $post->body = $body;
-        $post->save();
-
+        Post::create($request->only(['title', 'body']));
         return response()->json(['message' => 'New post added successfully'], 201);
     }
 }
