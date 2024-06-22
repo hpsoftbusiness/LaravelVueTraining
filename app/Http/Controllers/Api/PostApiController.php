@@ -10,8 +10,8 @@ class PostApiController extends Controller
 {
     public function ajax(Request $request)
     {
-        $post = Post::find(1);
-
+        $query = $request->get('query');
+        $post = Post::where('title', $query)->orWhere('body', $query)->first();
         return response()->json($post);
     }
 }

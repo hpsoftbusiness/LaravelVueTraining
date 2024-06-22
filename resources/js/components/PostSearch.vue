@@ -15,25 +15,21 @@ export default {
     data() {
         return {
             message: '',
-            response: ''
+            response: '',
+            resp:'',
+            formData: {
+                id: '',
+                title: '',
+                body: ''
+            },
         }
     },
     methods: {
-        async fetchData() {
-            try {
-                const res = await fetch('/post/ajax', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({ query: this.message })
-                });
-                this.response = await res.json();
-            } catch (error) {
-                console.error('Error:', error);
-                this.response = 'An error occurred';
-            }
+        fetchData() {
+         axios.post('/post/ajax', { query: this.message })
+              .then(response => {
+                  this.response = response.data;
+              })
         }
     }
 }
