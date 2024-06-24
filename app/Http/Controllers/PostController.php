@@ -55,7 +55,12 @@ class PostController extends Controller
             return response()->json(['message' => 'Post saved successfully'], 201);
         }
 
-        Post::create($request->only(['title', 'body']));
+        $post = Post::create([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'user_id' => $request->input('user'),
+        ]);
+
         return response()->json(['message' => 'New post added successfully'], 201);
     }
 }

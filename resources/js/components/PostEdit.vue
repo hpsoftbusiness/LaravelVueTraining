@@ -48,7 +48,8 @@ export default {
             formData: {
                 id: '',
                 title: '',
-                body: ''
+                body: '',
+                user: ''
             },
         };
     },
@@ -56,6 +57,7 @@ export default {
         this.formData.title = this.edit.title,
         this.formData.body = this.edit.body,
         this.formData.id = this.edit.id
+        this.formData.user = 1
     },
     methods: {
         save() {

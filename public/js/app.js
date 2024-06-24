@@ -14890,12 +14890,14 @@ __webpack_require__.r(__webpack_exports__);
       formData: {
         id: '',
         title: '',
-        body: ''
+        body: '',
+        user: ''
       }
     };
   },
   mounted: function mounted() {
     this.formData.title = this.edit.title, this.formData.body = this.edit.body, this.formData.id = this.edit.id;
+    this.formData.user = 1;
   },
   methods: {
     save: function save() {
